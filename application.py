@@ -36,8 +36,8 @@ app = Flask(__name__)
 # except FileNotFoundError:
 SUBSCRIPTION_KEY = "7935a9e1f8ec4455964c7ff1a531ecbc"
 ENDPOINT = "https://bubucv.cognitiveservices.azure.com/"
-FACE_KEY = os.getenv('FACE_KEY')
-FACE_END = os.getenv('FACE_END')
+FACE_KEY = "71de99ae56d946a887abad7c81f4f5e8"
+FACE_END = "https://imageface.cognitiveservices.azure.com/"
 LINE_SECRET = "48bcb06ed85d64357a5b50ed6a55a490"
 LINE_TOKEN = "Hs8MmV7m+a0YGKZCul6XWPiVw8sd6romkklhWU9QusrEEJlzyP/aqSkawlH0fHHSPN3sJTreY92Q4g+1BmE5bIpdS9EkbUxeauxn5zabRuyb83EVHYOn952hktzkJ/Y48+cNDLqajahJH7VxLCdirAdB04t89/1O/w1cDnyilFU="
 IMGUR_CONFIG = {
