@@ -17,43 +17,41 @@ from PIL import Image, ImageDraw, ImageFont
 
 app = Flask(__name__)
 
-# try:
-#     with open('/home/config.json', 'r') as f:
-#         CONFIG = json.load(f)
-#     f.close()
-#
-#     SUBSCRIPTION_KEY = CONFIG['azure']['subscription_key']
-#     ENDPOINT = CONFIG['azure']['endpoint']
-#
-#     FACE_KEY = CONFIG['azure']['face_key']
-#     FACE_END = CONFIG['azure']['face_end']
-#
-#     LINE_SECRET = CONFIG['line']['line_secret']
-#     LINE_TOKEN = CONFIG['line']['line_token']
-#
-#     IMGUR_CONFIG = CONFIG['imgur']
-#
-# except FileNotFoundError:
-SUBSCRIPTION_KEY = "1ff09e01c2874c7b8a5ea248bb7cdb0f"
-ENDPOINT = "https://peter-cv.cognitiveservices.azure.com/"
-FACE_KEY = "cc4194f650a44cdaa10dc1bed5e40f3a"
-FACE_END = "https://face-jwt81728.cognitiveservices.azure.com/"
-LINE_SECRET = "48bcb06ed85d64357a5b50ed6a55a490"
-LINE_TOKEN = "Hs8MmV7m+a0YGKZCul6XWPiVw8sd6romkklhWU9QusrEEJlzyP/aqSkawlH0fHHSPN3sJTreY92Q4g+1BmE5bIpdS9EkbUxeauxn5zabRuyb83EVHYOn952hktzkJ/Y48+cNDLqajahJH7VxLCdirAdB04t89/1O/w1cDnyilFU="
-IMGUR_CONFIG = {
-    "client_id":"ef4e10ea1b3b20d",
-    "client_secret":"1561573baa4f2a284152866b34336dc68d454c25",
-    "access_token": "0e305cb17c2e66db2a920afcd61ea155b2c39605",
-    "refresh_token": "822a782473d6f5d81222fd0cbf73986110b0db55"
-}
+try:
+    with open('/home/config.json', 'r') as f:
+        CONFIG = json.load(f)
+    f.close()
+
+    SUBSCRIPTION_KEY = CONFIG['azure']['subscription_key']
+    ENDPOINT = CONFIG['azure']['endpoint']
+
+    FACE_KEY = CONFIG['azure']['face_key']
+    FACE_END = CONFIG['azure']['face_end']
+
+    LINE_SECRET = CONFIG['line']['line_secret']
+    LINE_TOKEN = CONFIG['line']['line_token']
+
+    IMGUR_CONFIG = CONFIG['imgur']
+
+except FileNotFoundError:
+    SUBSCRIPTION_KEY = os.getenv('SUBSCRIPTION_KEY')
+    ENDPOINT = os.getenv('ENDPOINT')
+    FACE_KEY = os.getenv('FACE_KEY')
+    FACE_END = os.getenv('FACE_END')
+    LINE_SECRET = os.getenv('LINE_SECRET')
+    LINE_TOKEN = os.getenv('LINE_TOKEN')
+    IMGUR_CONFIG = {
+        "client_id": os.getenv('IMGUR_ID'),
+        "client_secret": os.getenv('IMGUR_SECRET'),
+        "access_token": os.getenv('IMGUR_ACCESS'),
+        "refresh_token": os.getenv('IMGUR_REFRESH')
+    }
 
 CV_CLIENT = ComputerVisionClient(
-    ENDPOINT, CognitiveServicesCredentials(SUBSCRIPTION_KEY)
-)
+    ENDPOINT, CognitiveServicesCredentials(SUBSCRIPTION_KEY))
 LINE_BOT = LineBotApi(LINE_TOKEN)
 HANDLER = WebhookHandler(LINE_SECRET)
 IMGUR_CLIENT = Imgur(config=IMGUR_CONFIG)
-
 
 def azure_describe(url):
     """
