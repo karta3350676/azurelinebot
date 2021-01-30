@@ -34,17 +34,17 @@ app = Flask(__name__)
 #     IMGUR_CONFIG = CONFIG['imgur']
 #
 # except FileNotFoundError:
-SUBSCRIPTION_KEY = "7935a9e1f8ec4455964c7ff1a531ecbc"
-ENDPOINT = "https://bubucv.cognitiveservices.azure.com/"
-FACE_KEY = "71de99ae56d946a887abad7c81f4f5e8"
-FACE_END = "https://imageface.cognitiveservices.azure.com/"
+SUBSCRIPTION_KEY = "1ff09e01c2874c7b8a5ea248bb7cdb0f"
+ENDPOINT = "https://peter-cv.cognitiveservices.azure.com/"
+FACE_KEY = "cc4194f650a44cdaa10dc1bed5e40f3a"
+FACE_END = "https://face-jwt81728.cognitiveservices.azure.com/"
 LINE_SECRET = "48bcb06ed85d64357a5b50ed6a55a490"
 LINE_TOKEN = "Hs8MmV7m+a0YGKZCul6XWPiVw8sd6romkklhWU9QusrEEJlzyP/aqSkawlH0fHHSPN3sJTreY92Q4g+1BmE5bIpdS9EkbUxeauxn5zabRuyb83EVHYOn952hktzkJ/Y48+cNDLqajahJH7VxLCdirAdB04t89/1O/w1cDnyilFU="
 IMGUR_CONFIG = {
-    "client_id":"884f23de136d3e5",
-    "client_secret":"510b6b7cb7a9b522fbc32ce546155108ab2c5b56",
-    "access_token": "d7462f3957f4bcbd669ba6dbee91941a70c767d4",
-    "refresh_token": "016e9e56cab4a896f6cedc89cd5b50628bcf344a"
+    "client_id":"ef4e10ea1b3b20d",
+    "client_secret":"1561573baa4f2a284152866b34336dc68d454c25",
+    "access_token": "0e305cb17c2e66db2a920afcd61ea155b2c39605",
+    "refresh_token": "822a782473d6f5d81222fd0cbf73986110b0db55"
 }
 
 CV_CLIENT = ComputerVisionClient(
