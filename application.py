@@ -1,6 +1,3 @@
-"""
-Object detection and image description on LINE bot
-"""
 import os
 import json
 import requests
@@ -9,11 +6,9 @@ from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from msrest.authentication import CognitiveServicesCredentials
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
-from linebot.models import (MessageEvent, TextMessage, TextSendMessage,
-                            FlexSendMessage, ImageMessage)
+from linebot.models import (MessageEvent, TextMessage, TextSendMessage,FlexSendMessage, ImageMessage)
 from imgur_python import Imgur
 from PIL import Image, ImageDraw, ImageFont
-
 
 app = Flask(__name__)
 
@@ -47,8 +42,7 @@ except FileNotFoundError:
         "refresh_token": os.getenv('IMGUR_REFRESH')
     }
 
-CV_CLIENT = ComputerVisionClient(
-    ENDPOINT, CognitiveServicesCredentials(SUBSCRIPTION_KEY))
+CV_CLIENT = ComputerVisionClient(ENDPOINT, CognitiveServicesCredentials(SUBSCRIPTION_KEY))
 LINE_BOT = LineBotApi(LINE_TOKEN)
 HANDLER = WebhookHandler(LINE_SECRET)
 IMGUR_CLIENT = Imgur(config=IMGUR_CONFIG)
