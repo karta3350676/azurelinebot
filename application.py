@@ -136,7 +136,7 @@ def hello():
     return "Hello World!!!!!"
 
 
-@app.route("/callback", methods=['POST'])
+@app.route("/", methods=['POST'])
 def callback():
     """
     LINE bot webhook callback
