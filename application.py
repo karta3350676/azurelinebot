@@ -14,40 +14,42 @@ from linebot.models import (MessageEvent, TextMessage, TextSendMessage,
 from imgur_python import Imgur
 from PIL import Image, ImageDraw, ImageFont
 
+
 app = Flask(__name__)
 
-try:
-    with open('/home/config.json', 'r') as f:
-        CONFIG = json.load(f)
-    f.close()
-
-    SUBSCRIPTION_KEY = CONFIG['azure']['subscription_key']
-    ENDPOINT = CONFIG['azure']['endpoint']
-
-    FACE_KEY = CONFIG['azure']['face_key']
-    FACE_END = CONFIG['azure']['face_end']
-
-    LINE_SECRET = CONFIG['line']['line_secret']
-    LINE_TOKEN = CONFIG['line']['line_token']
-
-    IMGUR_CONFIG = CONFIG['imgur']
-
-except FileNotFoundError:
-    SUBSCRIPTION_KEY = os.getenv('SUBSCRIPTION_KEY')
-    ENDPOINT = os.getenv('ENDPOINT')
-    FACE_KEY = os.getenv('FACE_KEY')
-    FACE_END = os.getenv('FACE_END')
-    LINE_SECRET = os.getenv('LINE_SECRET')
-    LINE_TOKEN = os.getenv('LINE_TOKEN')
-    IMGUR_CONFIG = {
-        "client_id": os.getenv('IMGUR_ID'),
-        "client_secret": os.getenv('IMGUR_SECRET'),
-        "access_token": os.getenv('IMGUR_ACCESS'),
-        "refresh_token": os.getenv('IMGUR_REFRESH')
-    }
+# try:
+#     with open('/home/config.json', 'r') as f:
+#         CONFIG = json.load(f)
+#     f.close()
+#
+#     SUBSCRIPTION_KEY = CONFIG['azure']['subscription_key']
+#     ENDPOINT = CONFIG['azure']['endpoint']
+#
+#     FACE_KEY = CONFIG['azure']['face_key']
+#     FACE_END = CONFIG['azure']['face_end']
+#
+#     LINE_SECRET = CONFIG['line']['line_secret']
+#     LINE_TOKEN = CONFIG['line']['line_token']
+#
+#     IMGUR_CONFIG = CONFIG['imgur']
+#
+# except FileNotFoundError:
+SUBSCRIPTION_KEY = "7935a9e1f8ec4455964c7ff1a531ecbc"
+ENDPOINT = "https://bubucv.cognitiveservices.azure.com/"
+FACE_KEY = os.getenv('FACE_KEY')
+FACE_END = os.getenv('FACE_END')
+LINE_SECRET = "48bcb06ed85d64357a5b50ed6a55a490"
+LINE_TOKEN = "Hs8MmV7m+a0YGKZCul6XWPiVw8sd6romkklhWU9QusrEEJlzyP/aqSkawlH0fHHSPN3sJTreY92Q4g+1BmE5bIpdS9EkbUxeauxn5zabRuyb83EVHYOn952hktzkJ/Y48+cNDLqajahJH7VxLCdirAdB04t89/1O/w1cDnyilFU="
+IMGUR_CONFIG = {
+    "client_id":"884f23de136d3e5",
+    "client_secret":"510b6b7cb7a9b522fbc32ce546155108ab2c5b56",
+    "access_token": "d7462f3957f4bcbd669ba6dbee91941a70c767d4",
+    "refresh_token": "016e9e56cab4a896f6cedc89cd5b50628bcf344a"
+}
 
 CV_CLIENT = ComputerVisionClient(
-    ENDPOINT, CognitiveServicesCredentials(SUBSCRIPTION_KEY))
+    ENDPOINT, CognitiveServicesCredentials(SUBSCRIPTION_KEY)
+)
 LINE_BOT = LineBotApi(LINE_TOKEN)
 HANDLER = WebhookHandler(LINE_SECRET)
 IMGUR_CLIENT = Imgur(config=IMGUR_CONFIG)
